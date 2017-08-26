@@ -1,0 +1,9 @@
+<p> New html post: </p>
+
+<form method="POST" class="post-form">{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="save btn btn-default">Save</button>
+</form>
+
+<p><b>Parametr key = {{key}}</b></p>
+<p><b>Parametr key2 = {{key2}}</b></p>
