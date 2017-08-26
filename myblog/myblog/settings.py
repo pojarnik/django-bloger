@@ -25,7 +25,9 @@ SECRET_KEY = '%+cw^bxg595$*ht3b_!31m$_trf=5#l6+5nbdw@nam11egf1wi'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'pojar.pythonanywhere.com',
+]
 
 
 # Application definition
