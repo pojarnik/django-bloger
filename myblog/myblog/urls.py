@@ -16,7 +16,10 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+from komendatura import views
+
 urlpatterns = [
+    url(r'^$', views.who_is_on_post, name='home'),
     url(r'^admin/', admin.site.urls),
     url(r'^blog/', include('blog.urls')),
     url(r'^komendatura/', include('komendatura.urls')),
