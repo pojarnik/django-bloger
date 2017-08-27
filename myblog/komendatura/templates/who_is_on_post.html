@@ -1,0 +1,96 @@
+<html>
+    <head>
+        <style>
+            tr:nth-child(even) {background: #CCC}
+            tr:nth-child(odd) {background: #FFF}
+        </style>
+    </head>
+    <body>
+        <h1 style="text-align:center">Кто должен стоять на посту:</h1>
+
+        <form method="GET">
+            <label>Количество постовых:</label>
+            <input id="sol_count" type="text" name="sol_count" value="{{sol_count}}" />
+            <button type="submit">Изменить</button>
+
+            <hr/>
+            <div>
+                <label>Командир отделения:</label>
+                <input name='kom_otd' value="{{kom_otd}}" />
+            </div>
+            <hr/>
+            <div>
+                {% for i in soldiers_name %}
+                    <input id={{i.0}} name={{i.0}} value={{i.1}}></br>
+                {% endfor %}
+                {% if sol_count %}
+                    <button type="submit">Рассчитать смену</button>
+                    <button id='shiftSoldiers'>Прокрутить вперед</button>
+                {% endif %}
+            </div>
+            <hr/>
+            <div>
+                <table>
+                    <tr style="background-color:beige">
+                        <td>Пост 1:</td><td>Пост 2:</td>
+                    </tr>
+                    {% for i in result_post %}
+                        <tr>
+                            {% for n in i %}
+                                <td>
+                                    {{n}}
+                                </td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </form>
+
+        <script>
+            function shiftSoldiers() {
+                var soldier_count = document.getElementById('sol_count').value
+                if (soldier_count > 0) {
+                    var first = document.getElementById('soldier0').value
+                    for (var i=0; i<soldier_count-1; i++) {
+                        document.getElementById('soldier'+i).value = document.getElementById('soldier'+(i+1)).value
+                    }
+                    document.getElementById('soldier'+(soldier_count-1)).value = first
+                }
+            }
+
+            document.getElementById('shiftSoldiers').addEventListener('click', shiftSoldiers)
+        </script>
+    </body>
+</html>
+<!-- <div>
+    <label>Количество постовых</label>
+    <input id="soldier_count" name="soldier_count" />
+    <button id="sol_count_change">Изменить</button>
+</div>
+
+<div id="soldiers">
+
+</div>
+
+
+<script>
+    var count = document.getElementById("sol_count_change").addEventListener('click', clickSolCountChange);
+
+    function clickSolCountChange() {
+        if (document.getElementById('soldier_count').value) {
+            alert(document.getElementById('soldier_count').value)
+            var count = document.getElementById('soldier_count').value;
+            
+            var soldiers = document.getElementById('soldiers');
+            soldiers.innerHTML = '';
+            for (var i=0; i<count; i++) {
+                var newNode = document.createElement('input');
+                newNode.name = 'soldier' + i;
+                soldiers.appendChild(newNode);
+                soldiers.appendChild(document.createElement('br'))
+            }          
+        }
+        alert('sol_count clicked!')
+    }
+</script> -->
